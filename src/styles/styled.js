@@ -40,6 +40,13 @@ export const ShopBox = styled.div`
   padding: 30px 0;
 `;
 
+export const ErrorPageBox = styled.div`
+  width: 100%;
+  height: 470px;
+  background-color: red;
+  background-image: url('https://colorlib.com/wp/wp-content/uploads/sites/2/404-error-page-templates.jpg');
+`;
+
 export const LeftBox = styled.div`
   flex: 2;
 
@@ -74,18 +81,32 @@ export const ProductBox = styled.div`
     gap: 30px;
     overflow-y: scroll;
 
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2);
+
+    &::-webkit-scrollbar {
+      width: 8px; /* ширина всей полосы прокрутки */
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparent; /* цвет зоны отслеживания */
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2); /* цвет бегунка */
+      border-radius: 5px; /* округлось бегунка */
+    }
+
     li {
       flex: 1 200px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       padding: 10px;
+      overflow-x: hidden;
 
       img {
         border-radius: 10px;
 
         transition: transform 350ms ease-in;
-
         &:hover {
           transform: scale(1.05);
         }
@@ -154,6 +175,20 @@ export const ShoppingCartBox = styled.div`
         gap: 15px;
         height: 500px;
         overflow-y: scroll;
+
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0, 0, 0, 0.2);
+
+        &::-webkit-scrollbar {
+          width: 8px; /* ширина всей полосы прокрутки */
+        }
+        &::-webkit-scrollbar-track {
+          background-color: transparent; /* цвет зоны отслеживания */
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: rgba(0, 0, 0, 0.2); /* цвет бегунка */
+          border-radius: 5px; /* округлось бегунка */
+        }
 
         li {
           display: flex;

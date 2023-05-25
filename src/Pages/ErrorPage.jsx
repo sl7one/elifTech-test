@@ -1,3 +1,5 @@
+import { ErrorPageBox } from 'styles/styled';
+
 export const ErrorPage = () => {
-  return <div>ERROR PAGE</div>;
+  return <ErrorPageBox></ErrorPageBox>;
 };

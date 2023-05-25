@@ -70,7 +70,7 @@ class StoreRestaurant {
   handleRemove = id => {
     const dishes = this.helperReturnDishes();
     const updatedDishes = dishes.map(el =>
-      el.id === id ? { ...el, isAdded: false } : el
+      el.id === id ? { ...el, isAdded: false, ordered: 0 } : el
     );
 
     this.data = this.data.map(el =>

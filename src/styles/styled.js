@@ -41,6 +41,8 @@ export const ShopBox = styled.div`
 `;
 
 export const HistoryBox = styled.div`
+  padding-bottom: 60px;
+
   ul[attr='restaurants'] {
     display: flex;
     flex-direction: column;
@@ -55,9 +57,11 @@ export const HistoryBox = styled.div`
       ul[attr='dishes'] {
         margin-top: 20px;
         display: flex;
+        flex-wrap: wrap;
         gap: 10px;
 
         li {
+          flex: 1 200px;
           display: flex;
           gap: 10px;
 

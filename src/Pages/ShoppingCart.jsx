@@ -15,6 +15,7 @@ export const ShoppingCart = observer(() => {
     currentRestaurant,
     handleRemove,
     setHistory,
+    resetOrders,
   } = storeRestaurant;
   const [data, setData] = useState({
     name: '',
@@ -68,6 +69,7 @@ export const ShoppingCart = observer(() => {
     formData.forEach((val, key) => (data = { ...data, [key]: val }));
     setHistory(data);
     navigate('/history');
+    resetOrders();
   };
 
   let total = 0;

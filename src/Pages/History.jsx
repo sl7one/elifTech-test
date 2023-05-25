@@ -9,7 +9,6 @@ export const History = observer(() => {
 
   const ordersHistory = history.map(({ restaurant, dishes: data }) => {
     const dishes = JSON.parse(data);
-
     let total = 0;
 
     const orderedDishes = dishes.map(({ img, name, ordered, price }) => {
@@ -39,6 +38,7 @@ export const History = observer(() => {
       </li>
     );
   });
+
   return (
     <HistoryBox>
       <ul attr="restaurants">{ordersHistory}</ul>

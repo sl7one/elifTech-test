@@ -137,6 +137,19 @@ class StoreRestaurant {
   setHistory(data) {
     this.history.push(data);
   }
+
+  resetOrders() {
+    const dishes = this.helperReturnDishes();
+    const updatedDishes = dishes.map(el => ({
+      ...el,
+      isAdded: false,
+      ordered: 0,
+    }));
+
+    this.data = this.data.map(el =>
+      el.name === this.currentRestaurant ? { ...el, dishes: updatedDishes } : el
+    );
+  }
 }
 
 export const storeRestaurant = new StoreRestaurant();

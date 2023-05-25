@@ -1,10 +1,12 @@
 import { gsap } from 'gsap';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { storeRestaurant } from 'store/storeRestaurant';
 import { ShoppingCartBox } from 'styles/styled';
 
 export const ShoppingCart = observer(() => {
+  const navigate = useNavigate();
   const ref = useRef(null);
   const listRef = useRef([]);
   const {
@@ -12,6 +14,7 @@ export const ShoppingCart = observer(() => {
     handleIncrement,
     currentRestaurant,
     handleRemove,
+    setHistory,
   } = storeRestaurant;
   const [data, setData] = useState({
     name: '',
@@ -55,7 +58,16 @@ export const ShoppingCart = observer(() => {
     formData.append('email', email);
     formData.append('phone', phone);
     formData.append('adress', adress);
-    formData.append('dishes', dishes);
+    formData.append('restaurant', currentRestaurant);
+    formData.append(
+      'dishes',
+      JSON.stringify(dishes.filter(({ isAdded }) => isAdded === true))
+    );
+
+    let data = {};
+    formData.forEach((val, key) => (data = { ...data, [key]: val }));
+    setHistory(data);
+    navigate('/history');
   };
 
   let total = 0;

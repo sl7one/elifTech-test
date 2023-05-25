@@ -40,6 +40,60 @@ export const ShopBox = styled.div`
   padding: 30px 0;
 `;
 
+export const HistoryBox = styled.div`
+  ul[attr='restaurants'] {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+
+    li {
+      outline: 1px solid rgb(0, 0, 0, 0.1);
+      border-radius: 10px;
+      padding: 10px;
+
+      ul[attr='dishes'] {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+
+        li {
+          display: flex;
+          gap: 10px;
+
+          img {
+            width: 50%;
+            border-radius: 10px;
+          }
+          div {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            p[attr='title'] {
+              font-weight: 700;
+            }
+            span {
+              color: red;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+
+      p[attr='title'] {
+        margin-top: 20px;
+        font-weight: 700;
+
+        span {
+          color: red;
+        }
+      }
+    }
+  }
+`;
+
 export const ErrorPageBox = styled.div`
   width: 100%;
   height: 470px;

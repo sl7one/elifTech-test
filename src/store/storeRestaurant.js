@@ -9,12 +9,13 @@ class StoreRestaurant {
   isLoading = false;
   currentRestaurant = '';
   isSomeoneAdded = false;
+  history = [];
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
     makePersistable(this, {
       name: 'restaurants',
-      properties: ['data', 'currentRestaurant'],
+      properties: ['data', 'currentRestaurant', 'history'],
       storage: window.localStorage,
     });
   }
@@ -131,6 +132,10 @@ class StoreRestaurant {
         el.style.opacity = 1;
       }
     });
+  }
+
+  setHistory(data) {
+    this.history.push(data);
   }
 }
 

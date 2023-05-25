@@ -1,4 +1,5 @@
 import { ErrorPage } from 'Pages/ErrorPage';
+import { History } from 'Pages/History';
 import { Shop } from 'Pages/Shop';
 import { ShoppingCart } from 'Pages/ShoppingCart';
 import { Main } from 'components/Main/Main';
@@ -29,6 +30,7 @@ export const App = observer(() => {
           <Route path=":name" element={<Products />} />
         </Route>
         <Route path="shoppingCart" element={<ShoppingCart />} />
+        <Route path="history" element={<History />} />
         <Route path="*" element={<ErrorPage />} />
       </Route>
     </Routes>

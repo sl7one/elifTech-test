@@ -8,5 +8,8 @@
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
   "arrowParens": "avoid",
-  "proseWrap": "always"
+  "proseWrap": "always",
+  "importOrder": ["^\\u0000", "^react", "^@?\\w", "^\\.", "^\\u0000"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

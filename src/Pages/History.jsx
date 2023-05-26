@@ -1,3 +1,4 @@
+import { GSAPWrapper } from 'components/GSAPWrapper/GSAPWrapper';
 import { observer } from 'mobx-react-lite';
 import { storeRestaurant } from 'store/storeRestaurant';
 import { HistoryBox } from 'styles/styled';
@@ -40,8 +41,10 @@ export const History = observer(() => {
   });
 
   return (
-    <HistoryBox>
-      <ul attr="restaurants">{ordersHistory}</ul>
-    </HistoryBox>
+    <GSAPWrapper>
+      <HistoryBox>
+        <ul attr="restaurants">{ordersHistory}</ul>
+      </HistoryBox>
+    </GSAPWrapper>
   );
 });

@@ -1,3 +1,4 @@
+import { GSAPWrapper } from 'components/GSAPWrapper/GSAPWrapper';
 import { gsap } from 'gsap';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef, useState } from 'react';
@@ -7,7 +8,6 @@ import { ShoppingCartBox } from 'styles/styled';
 
 export const ShoppingCart = observer(() => {
   const navigate = useNavigate();
-  const ref = useRef(null);
   const listRef = useRef([]);
   const {
     data: restaurantList,
@@ -26,12 +26,6 @@ export const ShoppingCart = observer(() => {
   const { name, email, phone, adress } = data;
 
   useEffect(() => {
-    gsap.fromTo(
-      ref.current,
-      { x: '-100%', opacity: 0 },
-      { x: 0, opacity: 1, duration: 1, ease: 'back.out' }
-    );
-
     if (!listRef.current.length) return;
     gsap.fromTo(
       listRef.current,
@@ -106,72 +100,74 @@ export const ShoppingCart = observer(() => {
     });
 
   return (
-    <ShoppingCartBox ref={ref}>
-      <form onSubmit={onSubmit}>
-        <div part="left">
-          <div>
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              value={name}
-              onChange={onChange}
-              required
-              placeholder="Name"
-            />
-          </div>
-          <div>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={email}
-              onChange={onChange}
-              required
-              placeholder="Email"
-            />
-          </div>
-          <div>
-            <label htmlFor="phone">Phone</label>
-            <input
-              type="text"
-              name="phone"
-              id="phone"
-              value={phone}
-              onChange={onChange}
-              required
-              placeholder="Phone"
-            />
-          </div>
-          <div>
-            <label htmlFor="adress">Adress</label>
-            <input
-              type="text"
-              name="adress"
-              id="adress"
-              value={adress}
-              onChange={onChange}
-              required
-              placeholder="Adress"
-            />
-          </div>
-        </div>
-        <div part="right">
-          {items.length ? (
-            <>
-              <ul>{items}</ul>
-              <p title="total">total: {total}</p>
-              <button type="submit">Submit</button>
-            </>
-          ) : (
-            <div attr="message">
-              <p>There is no items</p>
+    <GSAPWrapper>
+      <ShoppingCartBox>
+        <form onSubmit={onSubmit}>
+          <div part="left">
+            <div>
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                value={name}
+                onChange={onChange}
+                required
+                placeholder="Name"
+              />
             </div>
-          )}
-        </div>
-      </form>
-    </ShoppingCartBox>
+            <div>
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                value={email}
+                onChange={onChange}
+                required
+                placeholder="Email"
+              />
+            </div>
+            <div>
+              <label htmlFor="phone">Phone</label>
+              <input
+                type="text"
+                name="phone"
+                id="phone"
+                value={phone}
+                onChange={onChange}
+                required
+                placeholder="Phone"
+              />
+            </div>
+            <div>
+              <label htmlFor="adress">Adress</label>
+              <input
+                type="text"
+                name="adress"
+                id="adress"
+                value={adress}
+                onChange={onChange}
+                required
+                placeholder="Adress"
+              />
+            </div>
+          </div>
+          <div part="right">
+            {items.length ? (
+              <>
+                <ul>{items}</ul>
+                <p title="total">total: {total}</p>
+                <button type="submit">Submit</button>
+              </>
+            ) : (
+              <div attr="message">
+                <p>There is no items</p>
+              </div>
+            )}
+          </div>
+        </form>
+      </ShoppingCartBox>
+    </GSAPWrapper>
   );
 });

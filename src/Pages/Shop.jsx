@@ -1,3 +1,4 @@
+import { GSAPWrapper } from 'components/GSAPWrapper/GSAPWrapper';
 import { gsap } from 'gsap';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef } from 'react';
@@ -8,7 +9,6 @@ import { LeftBox, RightBox, ShopBox } from 'styles/styled';
 export const Shop = observer(() => {
   const { data, setCurrentRestaurant, currentRestaurant } = storeRestaurant;
   const { name } = useParams();
-  const ref = useRef(null);
   const listRef = useRef([]);
 
   useEffect(() => {
@@ -17,11 +17,6 @@ export const Shop = observer(() => {
   }, [setCurrentRestaurant, name, currentRestaurant]);
 
   useEffect(() => {
-    gsap.fromTo(
-      ref.current,
-      { x: '-100%', opacity: 0 },
-      { x: 0, opacity: 1, duration: 1, ease: 'back.out' }
-    );
     gsap.fromTo(
       listRef.current,
       { x: '-50px', opacity: 0 },
@@ -36,13 +31,15 @@ export const Shop = observer(() => {
   ));
 
   return (
-    <ShopBox ref={ref}>
-      <LeftBox>
-        <ul routes="shopRoutes">{shops}</ul>
-      </LeftBox>
-      <RightBox>
-        <Outlet />
-      </RightBox>
-    </ShopBox>
+    <GSAPWrapper>
+      <ShopBox>
+        <LeftBox>
+          <ul routes="shopRoutes">{shops}</ul>
+        </LeftBox>
+        <RightBox>
+          <Outlet />
+        </RightBox>
+      </ShopBox>
+    </GSAPWrapper>
   );
 });

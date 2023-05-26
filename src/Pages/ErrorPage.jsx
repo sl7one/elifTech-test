@@ -1,5 +1,10 @@
+import { GSAPWrapper } from 'components/GSAPWrapper/GSAPWrapper';
 import { ErrorPageBox } from 'styles/styled';
 
 export const ErrorPage = () => {
-  return <ErrorPageBox></ErrorPageBox>;
+  return (
+    <GSAPWrapper>
+      <ErrorPageBox></ErrorPageBox>
+    </GSAPWrapper>
+  );
 };

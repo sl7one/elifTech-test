@@ -6,7 +6,7 @@ elifTech-test
 
 This project is a prototype food delivery site with the ability to add items to
 the cart. It is designed to demonstrate the functionality of ordering food
-online.
+online. Backend deployed on onrender.com
 
 ## Installation
 
@@ -19,7 +19,10 @@ online.
 On the Shop page, you can choose a restaurant and select food items exclusively
 from that restaurant. You have the option to add food items to the shopping
 cart. On the Shop Cart page, you can view all the selected food items and
-proceed to order them or remove them from the shopping cart.
+proceed to order them or remove them from the shopping cart. After successfully
+submitting you have been redirected to the History page. On the History page,
+you can view a record of your submissions and any relevant information
+associated with them.
 
 ## Contribution
 

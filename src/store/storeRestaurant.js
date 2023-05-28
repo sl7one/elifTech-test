@@ -1,7 +1,7 @@
+import { getData } from 'API/API';
 import { makePersistable, getPersistedStore } from 'mobx-persist-store';
 
 const { makeAutoObservable, runInAction } = require('mobx');
-const { fakeRestaurants } = require('utils/fakeShops');
 
 class StoreRestaurant {
   data = [];
@@ -9,13 +9,12 @@ class StoreRestaurant {
   isLoading = false;
   currentRestaurant = '';
   isSomeoneAdded = false;
-  history = [];
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
     makePersistable(this, {
       name: 'restaurants',
-      properties: ['data', 'currentRestaurant', 'history'],
+      properties: ['data', 'currentRestaurant'],
       storage: window.localStorage,
     });
   }
@@ -31,7 +30,7 @@ class StoreRestaurant {
     this.isLoading = true;
 
     try {
-      const data = await Promise.resolve(fakeRestaurants);
+      const data = await getData();
       runInAction(() => {
         this.data = data;
       });
@@ -132,10 +131,6 @@ class StoreRestaurant {
         el.style.opacity = 1;
       }
     });
-  }
-
-  setHistory(data) {
-    this.history.push(data);
   }
 
   resetOrders() {

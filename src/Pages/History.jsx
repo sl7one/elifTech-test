@@ -1,49 +1,61 @@
 import { GSAPWrapper } from 'components/GSAPWrapper/GSAPWrapper';
+import { Loader } from 'components/Loader/Loader';
 import { observer } from 'mobx-react-lite';
-import { storeRestaurant } from 'store/storeRestaurant';
+import { useEffect } from 'react';
+import { storeHistory } from 'store/storeHistory';
 import { HistoryBox } from 'styles/styled';
 
 export const History = observer(() => {
-  const { history } = storeRestaurant;
+  const { history, fetchHistory, isLoading } = storeHistory;
 
-  if (!history.length) return <div>There is no history</div>;
+  useEffect(() => {
+    fetchHistory();
+  }, [fetchHistory]);
 
-  const ordersHistory = history.map(({ restaurant, dishes: data }) => {
-    const dishes = JSON.parse(data);
-    let total = 0;
+  const ordersHistory = history.map(
+    ({ _id: restaurantId, restaurant, dishes }) => {
+      let total = 0;
 
-    const orderedDishes = dishes.map(({ img, name, ordered, price }) => {
-      total += ordered * price;
+      const orderedDishes = dishes.map(({ img, name, ordered, price, id }) => {
+        total += ordered * price;
+
+        return (
+          <li key={id}>
+            <img src={img} alt="pic" />
+            <div>
+              <p attr="title">{name}</p>
+              <p>Ordered: {ordered}</p>
+              <p>Price: {price}</p>
+              <p>
+                Total: <span> {ordered * price}</span>
+              </p>
+            </div>
+          </li>
+        );
+      });
+
       return (
-        <li key={name}>
-          <img src={img} alt="pic" />
-          <div>
-            <p attr="title">{name}</p>
-            <p>Ordered: {ordered}</p>
-            <p>Price: {price}</p>
-            <p>
-              Total: <span> {ordered * price}</span>
-            </p>
-          </div>
+        <li key={restaurantId}>
+          <p attr="title">{restaurant}</p>
+          <ul attr="dishes">{orderedDishes}</ul>
+          <p attr="title">
+            TOTAL: <span>{total}</span>
+          </p>
         </li>
       );
-    });
-
-    return (
-      <li key={restaurant}>
-        <p attr="title">{restaurant}</p>
-        <ul attr="dishes">{orderedDishes}</ul>
-        <p attr="title">
-          TOTAL: <span>{total}</span>
-        </p>
-      </li>
-    );
-  });
+    }
+  );
 
   return (
     <GSAPWrapper>
       <HistoryBox>
-        <ul attr="restaurants">{ordersHistory}</ul>
+        {isLoading ? (
+          <Loader />
+        ) : !history.length ? (
+          <div>There is no history</div>
+        ) : (
+          <ul attr="restaurants">{ordersHistory}</ul>
+        )}
       </HistoryBox>
     </GSAPWrapper>
   );

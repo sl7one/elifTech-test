@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { storeHistory } from 'store/storeHistory';
 import { storeRestaurant } from 'store/storeRestaurant';
 import { ShoppingCartBox } from 'styles/styled';
 
@@ -14,9 +15,11 @@ export const ShoppingCart = observer(() => {
     handleIncrement,
     currentRestaurant,
     handleRemove,
-    setHistory,
     resetOrders,
   } = storeRestaurant;
+
+  const { fetchAddHistory } = storeHistory;
+
   const [data, setData] = useState({
     name: '',
     email: '',
@@ -42,9 +45,14 @@ export const ShoppingCart = observer(() => {
     ({ name: restaurantName }) => restaurantName === currentRestaurant
   );
 
-  if (!restaurant) return;
+  if (!restaurant) return <div>No data</div>;
 
   const { dishes } = restaurant;
+
+  const cb = () => {
+    navigate('/history');
+    resetOrders();
+  };
 
   const onSubmit = e => {
     e.preventDefault();
@@ -61,9 +69,7 @@ export const ShoppingCart = observer(() => {
 
     let data = {};
     formData.forEach((val, key) => (data = { ...data, [key]: val }));
-    setHistory(data);
-    navigate('/history');
-    resetOrders();
+    fetchAddHistory(data, cb);
   };
 
   let total = 0;

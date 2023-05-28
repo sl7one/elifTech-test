@@ -24,8 +24,8 @@ export const Shop = observer(() => {
     );
   }, []);
 
-  const shops = data.map(({ name }) => (
-    <li key={name} ref={el => listRef.current.push(el)}>
+  const shops = data.map(({ name, _id }) => (
+    <li key={_id} ref={el => listRef.current.push(el)}>
       <NavLink to={`${name}`}>{name}</NavLink>
     </li>
   ));

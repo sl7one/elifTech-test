@@ -9,11 +9,11 @@ export const HeaderBox = styled.div`
   border-bottom: 2px solid rgba(0, 0, 0, 0.05);
   ul {
     display: flex;
-    gap: 30px;
 
     li {
       a {
-        padding: 30px 0;
+        padding: 30px 30px;
+        transition: all 350ms ease-in;
 
         &.active {
           color: red;
@@ -29,6 +29,10 @@ export const HeaderBox = styled.div`
             bottom: -2px;
             left: 0;
           }
+        }
+
+        &:hover:not(.active) {
+          background-color: rgba(0, 0, 0, 0.05);
         }
       }
     }
@@ -116,11 +120,16 @@ export const LeftBox = styled.div`
     li {
       a {
         padding: 10px;
-        transition: opacity 350ms ease-in;
+        border-radius: 7px;
+
+        transition: opacity 350ms ease-in, background-color 350ms ease-in;
 
         &.active {
-          border-radius: 7px;
           outline: 1px solid red;
+        }
+
+        &:hover:not(.active) {
+          background-color: rgba(0, 0, 0, 0.05);
         }
       }
     }

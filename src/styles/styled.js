@@ -234,7 +234,7 @@ export const ShoppingCartBox = styled.div`
     }
 
     div[part='right'] {
-      flex: 1;
+      flex: 2;
 
       ul {
         display: flex;
@@ -278,6 +278,10 @@ export const ShoppingCartBox = styled.div`
             width: 50%;
             padding-right: 15px;
             p {
+              &:first-of-type {
+                font-weight: 700;
+                font-size: 16px;
+              }
               margin-top: 10px;
               width: 80%;
               span {

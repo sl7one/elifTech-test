@@ -60,6 +60,7 @@ export const ShoppingCart = observer(() => {
 
     let data = {};
     formData.forEach((val, key) => (data = { ...data, [key]: val }));
+
     fetchAddHistory(data, cb);
   };
 

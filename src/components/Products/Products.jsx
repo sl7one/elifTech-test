@@ -29,7 +29,7 @@ export const Products = observer(() => {
           onClick={() => addToCart(id)}
           added={isAdded.toString()}
         >
-          Add to cart
+          {isAdded ? 'Remove from cart' : 'Add to cart'}
         </button>
       </li>
     );
